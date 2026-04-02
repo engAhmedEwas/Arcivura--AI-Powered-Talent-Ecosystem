@@ -1,6 +1,6 @@
 <p align="center">
   <a href="#" target="_blank">
-    <img src="public/assets/arcivura.svg" width="400" alt="Arcivura Logo">
+    <img src="https://github.com/engAhmedEwas/Arcivura--AI-Powered-Talent-Ecosystem/blob/main/public/assets/arcivura.svg?raw=true" width="400" alt="Arcivura Logo">
   </a>
 </p>
 
