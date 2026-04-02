@@ -1,0 +1,135 @@
+# 📄 Software Requirements Specification (SRS) - Comprehensive Edition
+## Project: AI-Driven Job Board Platform (ERP Style)
+## Developed by: Ahmed (Software Engineer)
+
+---
+
+### 1. System Architecture & Environment
+- **Model:** Two Separate Laravel 13 Applications.
+  - **App A (Job-App):** For Job Seekers (Public Facing).
+  - **App B (Admin-Dashboard):** For Admin, SuperAdmin, and Company Owners.
+- **Database:** Single Shared MySQL Database.
+- **AI Integration:** Google Gemini Pro API for Parsing & Matching.
+- **Real-time:** Laravel Reverb for background task notifications.
+- **Infrastructure:** Shared File Storage for PDF Resumes.
+
+---
+
+### 2. Hierarchical Roles & Permissions (RBAC)
+1. **SuperAdmin:** The "Root" user. Can manage Admins, manually reset passwords, and monitor security logs.
+2. **Admin:** Platform moderator. Manages companies, job listings, and views global analytics.
+3. **Company Owner:** Manages their own company profile, posts jobs, and reviews applicants.
+4. **Job Seeker:** Browses jobs, manages AI-enhanced resumes, and tracks applications.
+
+---
+
+### 3. Detailed User Stories (The Core Logic)
+
+#### A. Authentication & Security (Auth Stories)
+- **US1 (Seeker Registration):** "As a Seeker, I want to register via Email or Google. If via Email, I must verify my account using a 6-digit OTP sent to my inbox before I can apply for jobs."
+- **US2 (Admin/Owner Onboarding):** "As a SuperAdmin, I want to manually create Admin/Owner accounts so that the platform remains private and secure from unauthorized management."
+- **US3 (Secure Recovery):** "As any user, I want to reset my password using an OTP code sent to my email to ensure a fast and secure recovery process."
+- **US4 (SuperAdmin Override):** "As a SuperAdmin, I want to generate a temporary password for any Admin/Owner who lost access. The system must force them to change this password upon their first login."
+- **US5 (Security Audit):** "As a SuperAdmin, I want to see a log of all login attempts, including IP addresses, to detect and block potential brute-force attacks."
+
+#### B. The AI Edge (AI Stories)
+- **US6 (Intelligent Parsing):** "As a Seeker, I want to upload my PDF resume so that the AI (Gemini) can automatically extract my data into a JSON format for me to review and edit."
+- **US7 (Resume Manager):** "As a Seeker, I want to manage multiple resume profiles (e.g., Backend, Frontend) to tailor my applications to different job types."
+- **US8 (AI Match Scoring):** "As a Seeker, I want to see a compatibility score (%) between my resume and a specific job description before I hit apply."
+- **US9 (Insights Lab):** "As a Seeker, I want to visit a dedicated insights page to see AI-driven suggestions on how to improve my resume for better ATS performance."
+
+#### C. Jobs & Applications (Business Stories)
+- **US10 (Job Posting):** "As a Company Owner, I want to post job vacancies with specific types (Remote, Hybrid, On-site) and detailed descriptions."
+- **US11 (Application Tracking):** "As a Seeker, I want to track the status of my applications (Pending, Interview, Rejected) in real-time."
+- **US12 (Soft Deletion):** "As an Admin, I want to 'archive' (Soft Delete) jobs or companies instead of permanent deletion to maintain historical data integrity."
+
+---
+
+### 4. Technical Specifications (The Blueprint)
+
+<!-- #### Database Schema Highlights:
+- **Users Table:** `id, name, email, password, google_id, role, is_verified, otp_code, otp_expires_at, must_change_password_at, last_login_ip`.
+- **Resumes Table:** `id, user_id, raw_json_data, ai_score, ai_feedback, file_path`.
+- **Activity Logs Table:** `id, user_id, action, ip_address, user_agent, created_at`. -->
+
+#### UX/UI Standards:
+- **Progressive Feedback:** Use a non-intrusive progress bar for AI processing.
+- **Theme Separation:** Alpine.js for the toggle logic for Job-App (Modern) And Admin-Dashboard (Professional).
+- **Mobile First:** All interfaces must be responsive, especially for Seeker actions.
+
+### 5. System Modeling & Diagrams
+
+#### A. Use Case Model (نموذج حالات الاستخدام)
+This model defines the interactions between the external actors and the system boundaries.
+
+**1. System Actors (الفاعلون):**
+- **Job Seeker:** Primary user of the Job-App.
+- **Company Owner:** Primary user of the Admin-Dashboard (Company scope).
+- **Admin:** Moderator of the Admin-Dashboard (Global scope).
+- **SuperAdmin:** The absolute controller of the system.
+- **Gemini AI (External System):** Processes resumes and returns JSON data.
+
+**2. Core Use Cases by Actor:**
+
+* **Job Seeker:**
+  - `UC_01`: Register/Login (Includes `Verify OTP`, Extends `Google Socialite`).
+  - `UC_02`: Upload PDF Resume (Includes `Trigger AI Parser`).
+  - `UC_03`: Edit Extracted JSON Resume Data.
+  - `UC_04`: Browse Jobs & Filter.
+  - `UC_05`: Apply for Job (Includes `Calculate AI Match Score`).
+  - `UC_06`: View Application Status.
+  - `UC_07`: Toggle UI Theme (Dark/Light).
+
+* **Company Owner:**
+  - `UC_08`: Login (Includes `Verify OTP`).
+  - `UC_09`: Manage Company Profile.
+  - `UC_10`: Create/Edit/Soft-Delete Job Vacancies.
+  - `UC_11`: Review Applications (Accept/Reject/Archive).
+
+* **Admin:**
+  - `UC_12`: Manage All Companies & Jobs (Soft Delete/Restore).
+  - `UC_13`: View Platform Analytics (Active Users, Conversion Rates).
+
+* **SuperAdmin:**
+  - `UC_14`: Create Admin/Owner Accounts.
+  - `UC_15`: Manual Password Override (Force `must_change_password`).
+  - `UC_16`: Monitor Security Audit Logs (IP Addresses & Login Attempts).
+
+---
+
+#### B. Data Flow Diagram - DFD (مخطط تدفق البيانات)
+This section maps how data moves through the system, gets processed, and is stored.
+
+**Level 0: Context Diagram (النظرة العامة)**
+- **External Entities:** Seeker, Owner/Admin, Gemini API.
+- **Central Process:** The AI-Driven Job Board ERP.
+- **Flow:**
+  - Seeker sends -> `Personal Data`, `PDF Resume`, `Application Request`.
+  - System sends to Seeker -> `OTP`, `Extracted JSON`, `Job Matches`, `Status`.
+  - Admin/Owner sends -> `Job Details`, `System Configurations`, `Decisions`.
+  - System sends to Admin/Owner -> `Analytics`, `Security Logs`, `Applicant Data`.
+  - System sends to Gemini API -> `PDF Raw Text`, `Job Description`.
+  - Gemini API sends to System -> `Parsed JSON`, `Match Score (%)`, `Feedback`.
+
+**Level 1: Core Processes (العمليات الرئيسية)**
+The system is broken down into 4 main data-processing pipelines:
+
+1. **Process 1.0: Authentication & Security Management**
+   - *Input:* User Credentials / Google Token.
+   - *Process:* Validates data, generates OTP, checks IPs.
+   - *Data Stores (Write/Read):* `D1: Users DB`, `D2: Activity Logs DB`.
+
+2. **Process 2.0: AI Resume Processing (The AI Edge)**
+   - *Input:* PDF File from Seeker.
+   - *Process:* Sends file to Gemini API, receives JSON, allows user to edit, calculates matching score against jobs.
+   - *Data Stores (Write/Read):* `D3: Resumes DB` (Saves raw_json and ai_score).
+
+3. **Process 3.0: Job & Company Management**
+   - *Input:* Job details from Owner/Admin.
+   - *Process:* Validates inputs, applies Soft Deletes when requested.
+   - *Data Stores (Write/Read):* `D4: Companies DB`, `D5: Jobs DB`.
+
+4. **Process 4.0: Application & Analytics Pipeline**
+   - *Input:* Seeker clicks "Apply", Admin views Dashboard.
+   - *Process:* Links Seeker Resume to Job, updates status, aggregates data for analytics (using Caching).
+   - *Data Stores (Write/Read):* `D6: Applications DB`, `D1, D4, D5` (Read for Analytics).
