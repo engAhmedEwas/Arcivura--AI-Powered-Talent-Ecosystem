@@ -63,11 +63,12 @@ The database is designed for high-concurrency and deep analytics:
 - **Database:** MySQL 8.5
 - **AI Engine:** Google Gemini Pro API
 - **Real-time:** Laravel Reverb (WebSockets)
+  
+**git clone [https://github.com/Ahmed-Ewas/Arcivura.git](https://github.com/Ahmed-Ewas/Arcivura.git)**
 
 ## 🚀 Installation & Setup
 
 ```bash
-  git clone [https://github.com/Ahmed-Ewas/Arcivura.git](https://github.com/Ahmed-Ewas/Arcivura.git)
 
 # Install PHP dependencies
 ```bash
@@ -83,7 +84,7 @@ The database is designed for high-concurrency and deep analytics:
   php artisan migrate
 
 
----
+```
 
 ## 🚩 Project Status: Initial Launch (MVP)
 **Current Version:** 0.1.0-alpha  
