@@ -1,6 +1,6 @@
 <p align="center">
   <a href="#" target="_blank">
-    <img src="public/assets/arcivura.svg?raw=true" width="400" alt="Arcivura Logo">
+    <img src="public/assets/arcivura V2.svg?raw=true" width="400" alt="Arcivura Logo">
   </a>
 </p>
 
