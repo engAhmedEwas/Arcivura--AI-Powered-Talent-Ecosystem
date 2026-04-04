@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('description');
             $table->string('location');
-            $table->enum('type', ['Full-Time','Contract','Remote','Hybrid'])->default('Full-Time');
+            $table->string('type')->default('Full-Time');
             $table->decimal('salary', 12, 3);
             $table->json('requirements')->nullable();
             $table->boolean('is_active')->default(true)->nullable();

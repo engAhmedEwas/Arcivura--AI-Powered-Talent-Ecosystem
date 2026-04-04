@@ -1,6 +1,6 @@
 <p align="center">
   <a href="#" target="_blank">
-    <img src="رابط_الصورة_الذي_نسخته_هنا" width="400" alt="Arcivura Logo">
+    <img src="public/assets/arcivura V2.svg?raw=true" width="400" alt="Arcivura Logo">
   </a>
 </p>
 
@@ -8,18 +8,13 @@
 
 <p align="center">
 <a href="#"><img src="https://img.shields.io/badge/Laravel-13.x-FF2D20?style=for-the-badge&logo=laravel" alt="Laravel Version"></a>
-<a href="#"><img src="https://img.shields.io/badge/PHP-8.3-777BB4?style=for-the-badge&logo=php" alt="PHP Version"></a>
+<a href="#"><img src="https://img.shields.io/badge/PHP-8.5-777BB4?style=for-the-badge&logo=php" alt="PHP Version"></a>
 <a href="#"><img src="https://img.shields.io/badge/AI-Gemini%20Pro-blue?style=for-the-badge&logo=google-gemini" alt="AI Powered"></a>
 <a href="#"><img src="https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge" alt="License"></a>
 </p>
 
 
 # 🚀 Arcivura: AI-Powered Talent Ecosystem
-
-[![Laravel 13](https://img.shields.io/badge/Laravel-13-FF2D20?style=for-the-badge&logo=laravel)](https://laravel.com)
-[![PHP 8.3](https://img.shields.io/badge/PHP-8.3-777BB4?style=for-the-badge&logo=php)](https://php.net)
-[![AI-Powered](https://img.shields.io/badge/AI-Gemini%20Pro-blue?style=for-the-badge&logo=google-gemini)](https://deepmind.google/technologies/gemini/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
 ## About Arcivura
 
@@ -68,27 +63,8 @@ The database is designed for high-concurrency and deep analytics:
 - **Database:** MySQL 8.5
 - **AI Engine:** Google Gemini Pro API
 - **Real-time:** Laravel Reverb (WebSockets)
+  
 
-## 🚀 Installation & Setup
-
-```bash
-  git clone [https://github.com/Ahmed-Ewas/Arcivura.git](https://github.com/Ahmed-Ewas/Arcivura.git)
-
-# Install PHP dependencies
-```bash
-  composer install
-
-# Setup environment
-```bash
-  cp .env.example .env
-  php artisan key:generate
-
-# Run migrations
-```bash
-  php artisan migrate
-
-
----
 
 ## 🚩 Project Status: Initial Launch (MVP)
 **Current Version:** 0.1.0-alpha  
@@ -101,3 +77,74 @@ The database is designed for high-concurrency and deep analytics:
 - [ ] Core Models & RBAC Implementation (Current Phase)
 - [ ] Gemini AI Resume Parsing Engine
 - [ ] Job Matching Algorithm (SmartRoute)
+
+
+---------------------------------------------------------------------------------------------------------
+
+# 🚀 Arcivura Admin Dashboard Category Section
+
+**Arcivura** هو نظام إداري متطور مبني باستخدام **Laravel 12**، مصمم لإدارة التصنيفات (Categories) والكلمات المفتاحية (Keywords) بدقة عالية. يتميز النظام بواجهة مستخدم عصرية، نظام تنبيهات تفاعلي، وإدارة كاملة للمحتوى المؤرشف.
+
+---
+
+## ✨ المميزات الرئيسية
+* **إدارة الأقسام (CRUD):** إضافة، تعديل، وعرض الأقسام مع ربطها بكلمات مفتاحية متعددة.
+* **نظام المراجعة الذكي:** الكلمات المفتاحية المضافة تدخل في حالة "قيد الانتظار" (Pending) للمراجعة من قبل المسؤول.
+* **الأرشفة (Soft Deletes):** نظام سلة مهملات متكامل لاستعادة البيانات أو حذفها نهائياً.
+* **تنبيهات SweetAlert2:** تجربة مستخدم سلسة مع تنبيهات فورية لحالات النجاح، الخطأ، والتحذير.
+* **UI احترافي:** Sidebar و Top Bar ثابتين لسهولة التنقل، مع تصميم متجاوب.
+
+---
+
+## 📸 معرض الصور (Screenshots)
+
+|                الأساسيات          |               العمليات                   |
+| --------------------------------- | ---------------------------------------- |
+| ![Main Dashboard](Documentation/project-images/main-dashboard.png)           |
+| ![Create Category](Documentation/project-images/create-ctegory&keywords.png) |
+| ![Categories Index](Documentation/project-images/categories-index.png)       |
+| ![Edit Category](Documentation/project-images/edit-category&keywords.png)    |
+
+|           النظام المتقدم      |               التنبيهات                  |
+| ----------------------------- | ---------------------------------------- |
+| ![Trash Bin](Documentation/project-images/trash-bin.png)                 |
+| ![Success Message](Documentation/project-images/usccess-msg.png)         |
+| ![Keywords Review](Documentation/project-images/keywords-review.png)     |
+| ![Delete Confirmation](Documentation/project-images/delete-category.png) |
+
+---
+
+## 🎥 فيديو توضيحي (Demo)
+يمكنك مشاهدة النظام وهو يعمل بشكل كامل (إضافة، تعديل، أرشفة، ومراجعة) من خلال الرابط أدناه:
+| ![Descriptive Video](Documentation/project-images/Arcivura-video.webm)
+
+---
+
+## 🛠️ التقنيات المستخدمة
+- **Framework:** Laravel 13 && php 8.5.0
+- **Frontend:** Tailwind CSS, Blade Templates
+- **Database:** MySQL (with Soft Deletes)
+- **Interactive UI:** SweetAlert2, JavaScript (Event Delegation)
+- **Architecture:** PHP Enums for Roles & Status
+
+--------------------------------------------------------------------------------------------------------
+## 🚀 Installation & Setup
+
+### git clone https://github.com/engAhmedEwas/Arcivura--AI-Powered-Talent-Ecosystem.git
+
+# Install PHP dependencies
+```bash
+  composer install
+```
+
+# Setup environment
+```bash
+  cp .env.example .env
+  php artisan key:generate
+```
+
+# Run migrations
+```bash
+  php artisan migrate
+```
+-----------------------------------------------------------------------------------------------------

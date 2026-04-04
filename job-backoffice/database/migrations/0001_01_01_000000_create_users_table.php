@@ -20,12 +20,12 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->enum('role', ['superAdmin', 'admin', 'owner', 'seeker'])->default('seeker');
+            $table->string('role')->default('job_seeker');
             $table->string('otp_code')->nullable();
             $table->boolean('is_verified')->default(false);
-            $table->string('theme');
-            $table->timestamp('otp_expires_at');
-            $table->timestamp('last_login_at');
+            $table->string('theme')->default('light');
+            $table->timestamp('otp_expires_at')->nullable();
+            $table->timestamp('last_login_at')->nullable();
             $table->timestamps();
 
             $table->softDeletes();

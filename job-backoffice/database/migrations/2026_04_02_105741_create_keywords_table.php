@@ -11,17 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('resumes', function (Blueprint $table) {
+        Schema::create('keywords', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('file_name');
-            $table->string('file_uri')->index();
-            $table->json('parsed_data'); // ??
-            $table->string('status')->default('processing');
+            $table->string('name')->unique();
+            $table->string('slug')->unique()->nullable();
+            $table->string('status')->default('pending');
+            $table->boolean('is_approved')->default(false);
             $table->timestamps();
-
-            $table->softDeletes();
-
-            $table->foreignUuid('user_id')->constained('users')->onDelete('restrict');
         });
     }
 
@@ -30,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('resumes');
+        Schema::dropIfExists('keywords');
     }
 };

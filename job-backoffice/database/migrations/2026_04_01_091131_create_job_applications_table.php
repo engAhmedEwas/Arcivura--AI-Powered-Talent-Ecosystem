@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->float('ai_score')->index();
             $table->text('ai_feedback');
-            $table->enum('status', ['pending', 'reviewed', 'rejected', 'accepted'])->default('pending');
+            $table->string('status')->default('pending');
             $table->timestamps();
 
             $table->softDeletes();
