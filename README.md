@@ -64,7 +64,26 @@ The database is designed for high-concurrency and deep analytics:
 - **AI Engine:** Google Gemini Pro API
 - **Real-time:** Laravel Reverb (WebSockets)
   
+### git clone https://github.com/engAhmedEwas/Arcivura--AI-Powered-Talent-Ecosystem.git
 
+## 🚀 Installation & Setup
+
+# Install PHP dependencies
+```bash
+  composer install
+```
+
+# Setup environment
+```bash
+  cp .env.example .env
+  php artisan key:generate
+```
+
+# Run migrations
+```bash
+  php artisan migrate
+```
+>>>>>>> 1421eddee74395371e60ed1f3c2b55ca260b73ae
 
 ## 🚩 Project Status: Initial Launch (MVP)
 **Current Version:** 0.1.0-alpha  
