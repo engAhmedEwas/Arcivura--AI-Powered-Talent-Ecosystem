@@ -21,6 +21,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreignUuid('user_id')->constrained('users')->onDelete('restrict');
+            $table->foreignUuid('keyword_id')->constrained('keywords')->onDelete('restrict');
         });
     }
 

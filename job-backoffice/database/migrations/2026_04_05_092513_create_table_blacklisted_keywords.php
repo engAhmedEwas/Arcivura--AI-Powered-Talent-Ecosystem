@@ -11,14 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('keywords', function (Blueprint $table) {
+        Schema::create('blacklists', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('name')->unique();
-            $table->string('slug')->unique()->nullable();
-            $table->string('status')->default('pending');
-            $table->boolean('is_approved')->default(false);
+            $table->string('word')->unique();
+            $table->string('reason')->nullable();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('keywords');
+        Schema::dropIfExists('blacklists');
     }
 };

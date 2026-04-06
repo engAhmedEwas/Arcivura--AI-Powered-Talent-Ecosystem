@@ -53,38 +53,5 @@ class Category extends Model
 
         $this->update(['slug' => $categorySlug]);
     }
-    // public function updateDynamicSlug(): void
-    // {
-    //     // insert the keyword into (slug->frist)
-    //     $keywordPrefix = $this->keywords
-    //     ->pluck('slug')->filter()->implode('_');
-
-    //     // insert the name into (slug->next)
-    //     $nameSlug = Str::slug($this->name);
-
-    //     $identifier = $this->id ?? Str::uuid();
-    //     $shortId = substr($identifier, 0, 5);
-
-    //     // slug = keyword_categoryName
-    //     $categorySlug = $keywordPrefix ? 
-    //         "{$keywordPrefix}_{$nameSlug}" : 
-    //         "{$nameSlug}_" . $shortId
-    //     ;
-
-    //     $this->update(['slug' => $categorySlug]);
-    // }
         
-    
-
-    /*
-    protected static function booted(){
-        static::creating(
-            function($category){
-                if(empty($category->slug)){
-                    $category->slug = Str::slug($category->name);
-                }
-            }
-        );
-    }
-    */
 }

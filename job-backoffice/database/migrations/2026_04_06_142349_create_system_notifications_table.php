@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('keywords', function (Blueprint $table) {
+        Schema::create('system_notifications', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('name')->unique();
-            $table->string('slug')->unique()->nullable();
-            $table->string('status')->default('pending');
-            $table->boolean('is_approved')->default(false);
+            $table->string('message'); // نص التنبيه
+            $table->string('type')->default('info'); // نوع التنبيه (success, danger, info)
+            $table->boolean('is_read')->default(false); // هل قرأه الأدمن؟
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('keywords');
+        Schema::dropIfExists('system_notifications');
     }
 };

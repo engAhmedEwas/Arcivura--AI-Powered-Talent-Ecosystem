@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('category_keyword', function (Blueprint $table) {
             $table->foreignUuid('category_id')->constrained('categories')->onDelete('cascade');
             $table->foreignUuid('keyword_id')->constrained('keywords')->onDelete('cascade');
-            $table->string('slug')->unique();
+            $table->string('slug')->nullable()->unique();
 
             $table->primary(['category_id', 'keyword_id']);
             $table->timestamps();

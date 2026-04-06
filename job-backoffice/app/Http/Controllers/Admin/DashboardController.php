@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Blacklist;
 use App\Models\Keyword; 
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -15,7 +16,8 @@ class DashboardController extends Controller
         $approvedCount = Keyword::where('is_approved', true)->count();
         $totalCategories = Category::count();
 
-        // جلب الكلمات المعتمدة للجدول
+        $blacklistedCount = Blacklist::count();
+
         $approvedKeywords = Keyword::where('is_approved', true)
             ->with('categories')
             ->latest()
@@ -27,7 +29,8 @@ class DashboardController extends Controller
             'pendingCount',
             'approvedCount',
             'totalCategories',
-            'approvedKeywords'
+            'approvedKeywords',
+            'blacklistedCount'
         ));
     }
 }

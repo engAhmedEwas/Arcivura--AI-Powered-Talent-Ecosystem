@@ -57,20 +57,45 @@ The database is designed for high-concurrency and deep analytics:
 - **JSON Fields:** Flexible storage for parsed resume data and dynamic job requirements.
 
 ## 🛠️ Tech Stack
+- **Language:** PHP 8.5+
 - **Framework:** Laravel 13 (PHP 8.5)
 - **Frontend:** Blade Templating Engine & Tailwind CSS
 - **Authentication:** Custom Laravel Breeze (MVC Pattern)
-- **Database:** MySQL 8.5
+- **Database:** MySQL 8.5 (Optimized with UUIDs, Indexing and soft Delerte)
+- **Interactive UI:** SweetAlert2, JavaScript (Event Delegation)
+- **Architecture:** PHP Enums for Roles & Status
 - **AI Engine:** Google Gemini Pro API
-- **Real-time:** Laravel Reverb (WebSockets)
-  
+- **Real-time:** Laravel Reverb Ready
+
+## ✨ Key Technical Features
+* **Intelligence Registry:** Advanced management for Categories and Keywords with a "Pending-Review" state machine.
+* **Architectural Integrity:** Full **UUID** implementation for primary keys to prevent ID enumeration and enhance security.
+* **Data Resiliency:** Integrated **Soft Deletes** for all critical entities with a dedicated Trash Management system.
+* **Interactive UX:** Real-time notifications powered by **SweetAlert2** and an event-driven UI.
+* **Modern Backend:** Leveraging PHP 8.5 **Enums** for Type-safety in Roles and Status management.
 
 
 ## 🚩 Project Status: Initial Launch (MVP)
-**Current Version:** 0.2.0-alpha  
+**Current Version:** 0.3.0-alpha  
 **Status:** In Active Development 🛠️
 
 > "Arcivura is currently in its initial architectural phase. We are focusing on establishing a rock-solid foundation with Laravel 13, preparing for the upcoming AI integration layer."
+
+## 🔍 Current Implementation & Achievements
+In the current development phase, I have successfully engineered the core administrative backbone of **Arcivura**, focusing on data integrity and scalable architecture:
+
+### 1. Advanced Category & Keyword Engine
+- **Relational Mapping:** Implemented a robust One-to-Many relationship between Categories and Keywords.
+- **Intelligence Review Workflow:** Developed a state-driven system where new keywords are flagged as `Pending` for administrative moderation, ensuring data quality for future AI training.
+- **Event-Driven UI:** Leveraged **JavaScript Event Delegation** to handle dynamic keyword inputs and deletions without page reloads.
+
+### 2. Enterprise-Grade Security
+- **UUID Integration:** Migrated from auto-incrementing IDs to **UUID v4** across all models to mitigate "Insecure Direct Object Reference" (IDOR) vulnerabilities.
+- **Type-Safe Logic:** Utilized **PHP 8.5 Enums** to handle Roles and Statuses, reducing runtime errors and improving code readability.
+
+### 3. Data Safety & Archival
+- **Soft Delete Pattern:** Implemented a comprehensive "Trash Bin" system, allowing for data recovery and preventing accidental permanent loss of enterprise resources.
+- **Audit-Ready Dashboards:** Designed a responsive interface using **Tailwind CSS** that provides real-time feedback through **SweetAlert2** integrations.
 
 ### 🗺️ Roadmap
 - [x] Database Schema & Migrations (UUID Based)
@@ -79,55 +104,43 @@ The database is designed for high-concurrency and deep analytics:
 - [ ] Job Matching Algorithm (SmartRoute)
 
 
----------------------------------------------------------------------------------------------------------
+---
 
-# 🚀 Arcivura Admin Dashboard Category Section
+## 📽️ Admin Dashboard Showcase
+The current phase focuses on the **Backoffice ERP Engine**, managing core data entities with high integrity and real-time feedback.
 
-**Arcivura** هو نظام إداري متطور مبني باستخدام **Laravel 12**، مصمم لإدارة التصنيفات (Categories) والكلمات المفتاحية (Keywords) بدقة عالية. يتميز النظام بواجهة مستخدم عصرية، نظام تنبيهات تفاعلي، وإدارة كاملة للمحتوى المؤرشف.
+
+## 📸 System Architecture in Action
+
+|                الأساسيات             |                   العمليات                   |
+| ------------------------------------ | -------------------------------------------- |
+| ![Main Dashboard](Documentation/project-images/main-dashboard.png)                  |
+| ![Create Category](Documentation/project-images/category-create.png)                |
+| ![Categories Index](Documentation/project-images/main-category-page.png)            |
+| ![Edit Category](Documentation/project-images/keyword-&-category-edit.png)          |
+| ![Alerts](Documentation/project-images/delete-alert.png)                            |                           
+| ![Success Message](Documentation/project-images/success-msg.png)                    |
+
+|               النظام المتقدم         |                 التنبيهات                    |
+| ------------------------------------ | -------------------------------------------- |
+| ![Trash Bin](Documentation/project-images//trashbin-1.png)                          |
+| ![Trash Bin](Documentation/project-images//trashbin-2.png)                          |
+| ![Keywords](Documentation/project-images/main-keywordPage.png)                      |
+| ![Create Keywords](Documentation/project-images/keyword-create.png)                 |
+| ![Create Keywords](Documentation/project-images/keyword-create-2.png)               |
+| ![approved Keywords](Documentation/project-images/keyword-approved-section.png)     |
+| ![pending Keywords](Documentation/project-images/keyword-pending-section.png.png)   |
+| ![rejected Keywords](Documentation/project-images/keyword-rejected-section.png.png) |
+| ![DBlack List words](/Documentation/project-images/placklist-page.png)              | 
 
 ---
 
-## ✨ المميزات الرئيسية
-* **إدارة الأقسام (CRUD):** إضافة، تعديل، وعرض الأقسام مع ربطها بكلمات مفتاحية متعددة.
-* **نظام المراجعة الذكي:** الكلمات المفتاحية المضافة تدخل في حالة "قيد الانتظار" (Pending) للمراجعة من قبل المسؤول.
-* **الأرشفة (Soft Deletes):** نظام سلة مهملات متكامل لاستعادة البيانات أو حذفها نهائياً.
-* **تنبيهات SweetAlert2:** تجربة مستخدم سلسة مع تنبيهات فورية لحالات النجاح، الخطأ، والتحذير.
-* **UI احترافي:** Sidebar و Top Bar ثابتين لسهولة التنقل، مع تصميم متجاوب.
-
----
-
-## 📸 معرض الصور (Screenshots)
-
-|                الأساسيات          |               العمليات                   |
-| --------------------------------- | ---------------------------------------- |
-| ![Main Dashboard](Documentation/project-images/main-dashboard.png)           |
-| ![Create Category](Documentation/project-images/create-ctegory&keywords.png) |
-| ![Categories Index](Documentation/project-images/categories-index.png)       |
-| ![Edit Category](Documentation/project-images/edit-category&keywords.png)    |
-
-|           النظام المتقدم      |               التنبيهات                  |
-| ----------------------------- | ---------------------------------------- |
-| ![Trash Bin](Documentation/project-images/trash-bin.png)                 |
-| ![Success Message](Documentation/project-images/usccess-msg.png)         |
-| ![Keywords Review](Documentation/project-images/keywords-review.png)     |
-| ![Delete Confirmation](Documentation/project-images/delete-category.png) |
-
----
-
-## 🎥 فيديو توضيحي (Demo)
+## 🎥 Feature Demo
 يمكنك مشاهدة النظام وهو يعمل بشكل كامل (إضافة، تعديل، أرشفة، ومراجعة) من خلال الرابط أدناه:
-| ![Descriptive Video](Documentation/project-images/Arcivura-video.webm)
+| ![Descriptive Video](Documentation/project-images/output_final.mp4)
+
 
 ---
-
-## 🛠️ التقنيات المستخدمة
-- **Framework:** Laravel 13 && php 8.5.0
-- **Frontend:** Tailwind CSS, Blade Templates
-- **Database:** MySQL (with Soft Deletes)
-- **Interactive UI:** SweetAlert2, JavaScript (Event Delegation)
-- **Architecture:** PHP Enums for Roles & Status
-
---------------------------------------------------------------------------------------------------------
 ## 🚀 Installation & Setup
 
 ### git clone https://github.com/engAhmedEwas/Arcivura--AI-Powered-Talent-Ecosystem.git
@@ -147,4 +160,4 @@ The database is designed for high-concurrency and deep analytics:
 ```bash
   php artisan migrate
 ```
------------------------------------------------------------------------------------------------------
+---
