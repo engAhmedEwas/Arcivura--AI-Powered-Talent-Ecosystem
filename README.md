@@ -49,6 +49,9 @@ Unlike traditional keyword search, Arcivura uses NLP to:
 - **RBAC (Role-Based Access Control):** Granular permission system (SuperAdmin, Admin, Owner, Seeker).
 - **Soft Deletes:** Full data archival support across all major entities.
 - **Audit Logging:** Every administrative action is captured with IP, User-Agent, and Payload tracking.
+- **Users Authentication Protocol:**  Includes Super Admin, Admin, Moderator, and Seeker entry protocols 
+| ![Show Detailed Logic & Interactive Flow Simulator](Documentation/dock-auth/auth.html) |
+| ![Show Detailed Logic & Interactive Flow Simulator](Documentation/dock-auth/auth.md) |
 
 ## 📊 Database Schema Overview
 The database is designed for high-concurrency and deep analytics:
